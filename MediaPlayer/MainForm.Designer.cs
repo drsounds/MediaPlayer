@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("All music");
@@ -36,6 +35,7 @@
             treeNode1,
             treeNode2,
             treeNode3});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -80,7 +80,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImage = global::MediaPlayer.Properties.Resources.header;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button2);
@@ -124,7 +124,7 @@
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.trackBar1.Location = new System.Drawing.Point(0, 516);
+            this.trackBar1.Location = new System.Drawing.Point(0, 506);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(1170, 45);
             this.trackBar1.TabIndex = 4;
@@ -136,11 +136,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1170, 461);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1170, 451);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 55);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1170, 461);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1170, 451);
             this.toolStripContainer1.TabIndex = 5;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -161,7 +161,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1170, 461);
+            this.splitContainer1.Size = new System.Drawing.Size(1170, 451);
             this.splitContainer1.SplitterDistance = 219;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
@@ -184,7 +184,7 @@
             treeNode4.Text = "My library";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
-            this.treeView1.Size = new System.Drawing.Size(219, 461);
+            this.treeView1.Size = new System.Drawing.Size(219, 451);
             this.treeView1.TabIndex = 0;
             // 
             // splitContainer2
@@ -201,7 +201,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listView2);
             this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
-            this.splitContainer2.Size = new System.Drawing.Size(950, 461);
+            this.splitContainer2.Size = new System.Drawing.Size(950, 451);
             this.splitContainer2.SplitterDistance = 690;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
@@ -218,13 +218,15 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.ForeColor = System.Drawing.Color.Navy;
             this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(690, 461);
+            this.listView1.Size = new System.Drawing.Size(690, 451);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // name
@@ -258,7 +260,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(259, 461);
+            this.listView2.Size = new System.Drawing.Size(259, 451);
             this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -329,13 +331,13 @@
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImage = global::MediaPlayer.Properties.Resources.header;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.axWindowsMediaPlayer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 561);
+            this.panel2.Location = new System.Drawing.Point(0, 551);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1170, 45);
+            this.panel2.Size = new System.Drawing.Size(1170, 55);
             this.panel2.TabIndex = 3;
             // 
             // MainForm

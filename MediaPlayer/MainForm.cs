@@ -60,6 +60,7 @@ namespace MediaPlayer
         public void Colorize(Control c)
         {
             var GlobalBackColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+            this.BackColor = GlobalBackColor;
             try
             {
                 if (c.GetType() == typeof(ListView))
@@ -137,6 +138,11 @@ namespace MediaPlayer
             }
         }
         public IMusicService MusicService { get; set; }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+
+        }
     }
     public static class Utils
     {
