@@ -18,6 +18,7 @@ namespace MediaPlayer
         public MainForm()
         {
             InitializeComponent();
+            this.MusicServices.Add(new MediaPlayerMusicService(this.axWindowsMediaPlayer1));
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -107,6 +108,7 @@ namespace MediaPlayer
            
             return hslColor;
         }
+        public List<IMusicService> MusicServices = new List<IMusicService>();
         private void MainForm_Load(object sender, EventArgs e)
         {
             Colorize(this);
@@ -120,8 +122,21 @@ namespace MediaPlayer
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-
+            if (listView1.SelectedItems.Count > 0)
+            {
+                var item = listView1.SelectedItems[0];
+                Track t = (Track)item.Tag;
+                foreach(IMusicService m in this.MusicServices)
+                {
+                    if (m.Play(t.Name, t.Artist, t.Album))
+                    {
+                        this.MusicService = m;
+                        break;
+                    }
+                }
+            }
         }
+        public IMusicService MusicService { get; set; }
     }
     public static class Utils
     {
