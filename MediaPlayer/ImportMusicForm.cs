@@ -51,6 +51,7 @@ namespace MediaPlayer
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Progress?.Invoke(this, (Track)e.UserState);
+            label2.Text = ((Track)e.UserState).Artist + ((Track)e.UserState).Name;
         }
 
         private MediaPlayerDatabaseContext DbContext;
@@ -78,8 +79,9 @@ namespace MediaPlayer
                     DbContext.Tracks.Add(track);
 
                     bw.ReportProgress(2, track);
-                } catch (Exception e)
-                {
+                }
+                catch (Exception e)
+                    {
 
                 }
             }
@@ -94,6 +96,11 @@ namespace MediaPlayer
                 DbContext.SaveChanges();
             }
             bw.ReportProgress(100);
+        }
+
+        private void ImportMusicForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

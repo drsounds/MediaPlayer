@@ -1,4 +1,5 @@
-﻿using MediaPlayer;
+﻿using ColorDemo;
+using MediaPlayer;
 using MediaPlayer.Models;
 using System;
 using System.Collections.Generic;
@@ -40,17 +41,86 @@ namespace MediaPlayer
         }
         public void LoadMusic()
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            try
             {
-                var tracks = dbContext.Tracks;
-                listView1.ReloadListView(tracks);
+                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+                {
+                    var tracks = dbContext.Tracks;
+                    listView1.ReloadListView(tracks);
+                    Colorize(listView1);
+                }
+            }
+            catch (Exception e)
+            {
+               
             }
         }
 
+        public void Colorize(Control c)
+        {
+            var GlobalBackColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+            try
+            {
+                if (c.GetType() == typeof(ListView))
+                {
+                    ListView listView = (ListView)c;
+                    listView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
+                    listView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); 
+                    int i = 0;
+                    foreach (ListViewItem item in listView.Items)
+                    {
+                        if ((i % 2) == 0)
+                        {
+                            item.BackColor = AdjustColor(Properties.Settings.Default.AlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
+                        }
+                        else
+                        {
 
+                            item.BackColor = AdjustColor(Properties.Settings.Default.RowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); 
+                        }
+                        i++;
+                    }
+                }
+                if (c.GetType() == typeof(TreeView))
+                {
+                    TreeView treeView = (TreeView)c;
+                    treeView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                    treeView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                }
+                foreach (Control t in c.Controls)
+                {
+
+                    Colorize(t);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        public Color AdjustColor(Color color, float hue, float saturation)
+        {
+
+            HSLColor hslColor = new HSLColor(color);
+            hslColor.Hue += hue - 140;
+            hslColor.Saturation += saturation;
+           
+            return hslColor;
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Colorize(this);
             LoadMusic();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            new ColorChooser(this).Show();
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+
         }
     }
     public static class Utils

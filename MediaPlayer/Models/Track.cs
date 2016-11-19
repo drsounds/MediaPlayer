@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MediaPlayer.Models
 {
-    public class Track : IComparer<Track>
+    public class Track
     {
-        public override bool Equals(object obj)
-        {
-            if (obj.GetType() == typeof(Track))
-            {
-                return this.Url == ((Track)obj).Url;
-            }
-            return base.Equals(obj);
-        }
 
         public string Name { get; set; }
         public string Artist { get; set; }
@@ -24,7 +18,10 @@ namespace MediaPlayer.Models
         public string Composer { get; set; }
         public string Version { get; set; }
         public string Edit { get; set; }
+        [Index(IsUnique =true)]
         public string Url { get; set; }
+        [Key]
+        public int ID { get; set; }
 
         public int Compare(Track x, Track y)
         {

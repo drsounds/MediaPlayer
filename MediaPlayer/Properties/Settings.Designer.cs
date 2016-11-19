@@ -25,10 +25,10 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Hue {
+        [global::System.Configuration.DefaultSettingValueAttribute("22")]
+        public float Hue {
             get {
-                return ((string)(this["Hue"]));
+                return ((float)(this["Hue"]));
             }
             set {
                 this["Hue"] = value;
@@ -37,10 +37,10 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Saturation {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float Saturation {
             get {
-                return ((string)(this["Saturation"]));
+                return ((float)(this["Saturation"]));
             }
             set {
                 this["Saturation"] = value;
@@ -49,13 +49,109 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Light {
             get {
                 return ((bool)(this["Light"]));
             }
             set {
                 this["Light"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("237, 242, 248")]
+        public global::System.Drawing.Color BackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BackColor"]));
+            }
+            set {
+                this["BackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("237, 242, 248")]
+        public global::System.Drawing.Color RowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RowColor"]));
+            }
+            set {
+                this["RowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 63, 98")]
+        public global::System.Drawing.Color ForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ForeColor"]));
+            }
+            set {
+                this["ForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("224, 234, 243")]
+        public global::System.Drawing.Color AlternateRowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["AlternateRowColor"]));
+            }
+            set {
+                this["AlternateRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30; 63; 98")]
+        public string DarkBackColor {
+            get {
+                return ((string)(this["DarkBackColor"]));
+            }
+            set {
+                this["DarkBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255;255;255;")]
+        public string DarkForeColor {
+            get {
+                return ((string)(this["DarkForeColor"]));
+            }
+            set {
+                this["DarkForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30; 63; 98")]
+        public string DarkRowColor {
+            get {
+                return ((string)(this["DarkRowColor"]));
+            }
+            set {
+                this["DarkRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("224; 234; 243")]
+        public string DarkAlternateRowColor {
+            get {
+                return ((string)(this["DarkAlternateRowColor"]));
+            }
+            set {
+                this["DarkAlternateRowColor"] = value;
             }
         }
     }
