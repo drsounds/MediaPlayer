@@ -66,28 +66,55 @@ namespace MediaPlayer
                 if (c.GetType() == typeof(ListView))
                 {
                     ListView listView = (ListView)c;
-                    listView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
-                    listView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); 
+                    if (Properties.Settings.Default.Light)
+                    {
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                        listView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                    }
+                    else
+                    {
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.9);
+                        listView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+
+                    }
                     int i = 0;
                     foreach (ListViewItem item in listView.Items)
                     {
                         if ((i % 2) == 0)
                         {
-                            item.BackColor = AdjustColor(Properties.Settings.Default.AlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
-                        }
-                        else
-                        {
+                            if (Properties.Settings.Default.AlternatingRows)
+                            if (Properties.Settings.Default.Light)
+                            {
+                                item.BackColor = AdjustColor(Properties.Settings.Default.AlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
 
-                            item.BackColor = AdjustColor(Properties.Settings.Default.RowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); 
+                            }
+                            else
+                            {
+                                item.BackColor = AdjustColor(Properties.Settings.Default.DarkAlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
+                            }
+                            else
+                            {
+                                item.BackColor =listView.BackColor;
+                            }
                         }
+                        
                         i++;
                     }
                 }
                 if (c.GetType() == typeof(TreeView))
                 {
                     TreeView treeView = (TreeView)c;
-                    treeView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
-                    treeView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                    if (Properties.Settings.Default.Light)
+                    {
+                        treeView.BackColor = AdjustColor(Properties.Settings.Default.BackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                        treeView.ForeColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+                    }
+                    else
+                    {
+                        treeView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.9);
+                        treeView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
+
+                    }
                 }
                 foreach (Control t in c.Controls)
                 {
@@ -143,9 +170,20 @@ namespace MediaPlayer
         {
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     public static class Utils
     {
+        public static Color Darken(this Color color, double darkenAmount)
+        {
+            HSLColor hslColor = new HSLColor(color);
+            hslColor.Luminosity *= darkenAmount; // 0 to 1
+            return hslColor;
+        }
         public static void ReloadListView(this ListView listView, DbSet<Track> objs) 
         {
             listView.Items.Clear();

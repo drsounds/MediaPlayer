@@ -23,17 +23,20 @@
     <Setting Name="AlternateRowColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">224, 234, 243</Value>
     </Setting>
-    <Setting Name="DarkBackColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">30; 63; 98</Value>
+    <Setting Name="DarkBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">30, 63, 98</Value>
     </Setting>
-    <Setting Name="DarkForeColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">255;255;255;</Value>
+    <Setting Name="DarkForeColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
     </Setting>
-    <Setting Name="DarkRowColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">30; 63; 98</Value>
+    <Setting Name="DarkRowColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">30, 63, 98</Value>
     </Setting>
-    <Setting Name="DarkAlternateRowColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">224; 234; 243</Value>
+    <Setting Name="DarkAlternateRowColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">40, 73, 108</Value>
+    </Setting>
+    <Setting Name="AlternatingRows" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

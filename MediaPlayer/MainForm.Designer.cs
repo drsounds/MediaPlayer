@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("All music");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("My library", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("All music");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("My library", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -174,16 +174,16 @@
             this.treeView1.ForeColor = System.Drawing.Color.Navy;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode5.Name = "Node2";
-            treeNode5.Text = "Artists";
-            treeNode6.Name = "Node3";
-            treeNode6.Text = "Albums";
-            treeNode7.Name = "Node4";
-            treeNode7.Text = "All music";
-            treeNode8.Name = "Node0";
-            treeNode8.Text = "My library";
+            treeNode13.Name = "Node2";
+            treeNode13.Text = "Artists";
+            treeNode14.Name = "Node3";
+            treeNode14.Text = "Albums";
+            treeNode15.Name = "Node4";
+            treeNode15.Text = "All music";
+            treeNode16.Name = "Node0";
+            treeNode16.Text = "My library";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(219, 451);
             this.treeView1.TabIndex = 0;
             // 
@@ -218,7 +218,6 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.ForeColor = System.Drawing.Color.Navy;
             this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
@@ -227,6 +226,7 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // name

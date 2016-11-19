@@ -48,5 +48,21 @@ namespace MediaPlayer
             Properties.Settings.Default.Save();
             MainForm.Colorize(MainForm);
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Light = checkBox1.Checked;
+            Properties.Settings.Default.Save();
+            MainForm.Colorize(MainForm);
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            Properties.Settings.Default.AlternatingRows = checkBox2.Checked;
+            Properties.Settings.Default.Save();
+            MainForm.Colorize(MainForm);
+        }
     }
 }

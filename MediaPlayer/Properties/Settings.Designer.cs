@@ -109,10 +109,10 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30; 63; 98")]
-        public string DarkBackColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 63, 98")]
+        public global::System.Drawing.Color DarkBackColor {
             get {
-                return ((string)(this["DarkBackColor"]));
+                return ((global::System.Drawing.Color)(this["DarkBackColor"]));
             }
             set {
                 this["DarkBackColor"] = value;
@@ -121,10 +121,10 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255;255;255;")]
-        public string DarkForeColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color DarkForeColor {
             get {
-                return ((string)(this["DarkForeColor"]));
+                return ((global::System.Drawing.Color)(this["DarkForeColor"]));
             }
             set {
                 this["DarkForeColor"] = value;
@@ -133,10 +133,10 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30; 63; 98")]
-        public string DarkRowColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 63, 98")]
+        public global::System.Drawing.Color DarkRowColor {
             get {
-                return ((string)(this["DarkRowColor"]));
+                return ((global::System.Drawing.Color)(this["DarkRowColor"]));
             }
             set {
                 this["DarkRowColor"] = value;
@@ -145,13 +145,25 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("224; 234; 243")]
-        public string DarkAlternateRowColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 73, 108")]
+        public global::System.Drawing.Color DarkAlternateRowColor {
             get {
-                return ((string)(this["DarkAlternateRowColor"]));
+                return ((global::System.Drawing.Color)(this["DarkAlternateRowColor"]));
             }
             set {
                 this["DarkAlternateRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AlternatingRows {
+            get {
+                return ((bool)(this["AlternatingRows"]));
+            }
+            set {
+                this["AlternatingRows"] = value;
             }
         }
     }
