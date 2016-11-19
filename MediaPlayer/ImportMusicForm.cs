@@ -51,7 +51,14 @@ namespace MediaPlayer
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Progress?.Invoke(this, (Track)e.UserState);
-            label2.Text = ((Track)e.UserState).Artist + ((Track)e.UserState).Name;
+            try
+            {
+                label2.Text = ((Track)e.UserState).Artist + ((Track)e.UserState).Name;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private MediaPlayerDatabaseContext DbContext;
@@ -71,7 +78,7 @@ namespace MediaPlayer
 
                     Track track = new Track()
                     {
-                        Artist = audioFile.Tag.FirstAlbumArtist,
+                        Artist = audioFile.Tag.Artists[0],
                         Name = audioFile.Tag.Title,
                         Album = audioFile.Tag.Title,
                         Url = "file://" + fi.FullName
