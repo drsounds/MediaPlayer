@@ -26,10 +26,10 @@ namespace MediaPlayer
         }
         public delegate void ReportProgressEventHandler(object sender, Track track);
         public event ReportProgressEventHandler Progress;
-
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Close();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,10 +65,7 @@ namespace MediaPlayer
         public void ScanDirectory(string path)
         {
             DirectoryInfo di = new DirectoryInfo(path);
-            foreach(DirectoryInfo dir in di.GetDirectories())
-            {
-                ScanDirectory(dir.FullName);
-            }
+            
             foreach(FileInfo fi in di.GetFiles())
             {
                 try
@@ -78,21 +75,29 @@ namespace MediaPlayer
 
                     Track track = new Track()
                     {
-                        Artist = audioFile.Tag.Artists[0],
+                        Artist = "",
                         Name = audioFile.Tag.Title,
-                        Album = audioFile.Tag.Title,
+                        Album = audioFile.Tag.Album,
                         Url = "file://" + fi.FullName
                     };
+                    if (audioFile.Tag.Artists.Length > 0)
+                    {
+                        track.Artist = audioFile.Tag.Artists[0];
+                    }
                     DbContext.Tracks.Add(track);
 
                     bw.ReportProgress(2, track);
                 }
                 catch (Exception e)
-                    {
+               {
 
                 }
             }
-            
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                ScanDirectory(dir.FullName);
+            }
+
         }
 
         private void Bw_DoWork(object sender, DoWorkEventArgs e)

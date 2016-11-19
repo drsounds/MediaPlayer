@@ -52,7 +52,8 @@
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(25, 102);
-            this.trackBar2.Maximum = 2048;
+            this.trackBar2.Maximum = 240;
+            this.trackBar2.Minimum = -240;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(448, 45);
             this.trackBar2.TabIndex = 0;
@@ -117,7 +118,7 @@
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 185);
+            this.ClientSize = new System.Drawing.Size(481, 185);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
