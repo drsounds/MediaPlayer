@@ -73,31 +73,41 @@ namespace MediaPlayer
                     }
                     else
                     {
-                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.9);
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.7);
                         listView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
 
                     }
                     int i = 0;
                     foreach (ListViewItem item in listView.Items)
                     {
-                        if ((i % 2) == 0)
+                        if (item.Tag == CurrentTrack)
                         {
-                            if (Properties.Settings.Default.AlternatingRows)
-                            if (Properties.Settings.Default.Light)
-                            {
-                                item.BackColor = AdjustColor(Properties.Settings.Default.AlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
+                            item.BackColor = Color.Black;
+                            item.ForeColor = Color.LightGreen;
 
-                            }
-                            else
+                        }
+                        else
+                        {
+                            item.BackColor = listView.BackColor;
+                            item.ForeColor = listView.ForeColor;
+                            if ((i % 2) == 0)
                             {
-                                item.BackColor = AdjustColor(Properties.Settings.Default.DarkAlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
-                            }
-                            else
-                            {
-                                item.BackColor =listView.BackColor;
+                                if (Properties.Settings.Default.AlternatingRows)
+                                    if (Properties.Settings.Default.Light)
+                                    {
+                                        item.BackColor = AdjustColor(Properties.Settings.Default.AlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation); ;
+
+                                    }
+                                    else
+                                    {
+                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkAlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.75);
+                                    }
+                                else
+                                {
+                                    item.BackColor = listView.BackColor;
+                                }
                             }
                         }
-                        
                         i++;
                     }
                 }
@@ -111,7 +121,7 @@ namespace MediaPlayer
                     }
                     else
                     {
-                        treeView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.9);
+                        treeView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.7);
                         treeView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
 
                     }
@@ -147,7 +157,7 @@ namespace MediaPlayer
         {
             new ColorChooser(this).Show();
         }
-
+        public Track CurrentTrack { get; set; }
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -159,6 +169,9 @@ namespace MediaPlayer
                     if (m.Play(t.Name, t.Artist, t.Album))
                     {
                         this.MusicService = m;
+                        CurrentTrack = t;
+                        Colorize(this);
+                        listView1.SelectedItems.Clear();
                         break;
                     }
                 }
