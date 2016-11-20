@@ -30,8 +30,8 @@
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("All music");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("My library", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Composers");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All Music", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3});
@@ -128,14 +128,14 @@
             this.treeView1.ForeColor = System.Drawing.Color.Navy;
             this.treeView1.Location = new System.Drawing.Point(0, 32);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node2";
+            treeNode1.Name = "Node1";
             treeNode1.Text = "Artists";
-            treeNode2.Name = "Node3";
+            treeNode2.Name = "Node2";
             treeNode2.Text = "Albums";
-            treeNode3.Name = "Node4";
-            treeNode3.Text = "All music";
+            treeNode3.Name = "Node3";
+            treeNode3.Text = "Composers";
             treeNode4.Name = "Node0";
-            treeNode4.Text = "My library";
+            treeNode4.Text = "All Music";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
             this.treeView1.Size = new System.Drawing.Size(210, 427);
@@ -289,7 +289,7 @@
             this.libraryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(156, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(166, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -297,13 +297,13 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // playbackToolStripMenuItem
             // 
             this.playbackToolStripMenuItem.Name = "playbackToolStripMenuItem";
-            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.playbackToolStripMenuItem.Text = "Playback";
             // 
             // libraryToolStripMenuItem
@@ -311,13 +311,13 @@
             this.libraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importMusicToolStripMenuItem});
             this.libraryToolStripMenuItem.Name = "libraryToolStripMenuItem";
-            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.libraryToolStripMenuItem.Text = "Library";
             // 
             // importMusicToolStripMenuItem
             // 
             this.importMusicToolStripMenuItem.Name = "importMusicToolStripMenuItem";
-            this.importMusicToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.importMusicToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.importMusicToolStripMenuItem.Text = "Import music";
             // 
             // panel2

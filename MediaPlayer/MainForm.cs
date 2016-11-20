@@ -44,19 +44,39 @@ namespace MediaPlayer
             this.Colorize(this);
         }
 
+        public class TrackArtistComparer : IEqualityComparer<Track>
+        {
+            public bool Equals(Track x, Track y)
+            {
+                return x.Artist == y.Artist;
+            }
+
+            public int GetHashCode(Track obj)
+            {
+                return obj.GetHashCode();
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
 
         }
         public void LoadMusic()
         {
+            TreeNode artistsNode = treeView1.Nodes[0].Nodes[0]; 
             try
             {
                 using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
                 {
-                    var tracks = dbContext.Tracks;
+                    var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist);
                     listView1.ReloadListView(tracks);
                     Colorize(listView1);
+                    var artists = dbContext.Tracks.Distinct(new TrackArtistComparer());
+                    artistsNode.Nodes.Clear();
+                    foreach(Track t in artists)
+                    {
+                        artistsNode.Nodes.Add(t.Artist);
+                       
+                    }
                 }
             }
             catch (Exception e)
