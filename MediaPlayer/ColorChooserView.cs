@@ -5,28 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaPlayer
 {
-    public partial class ColorChooser : Form
+    public partial class ColorChooserView : View
     {
-        public ColorChooser()
+        public ColorChooserView()
         {
             InitializeComponent();
         }
-        public ColorChooser(MainForm mainForm)
+        public ColorChooserView(MainForm mainForm)
         {
             this.MainForm = mainForm;
             InitializeComponent();
         }
 
         public MainForm MainForm { get; private set; }
-
+        public override bool AcceptsUri(string uri)
+        {
+            return new Regex("urn:color:chooser").IsMatch(uri);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
         }
 
         private void ColorChooser_Load(object sender, EventArgs e)

@@ -85,7 +85,7 @@ namespace MediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30, 63, 98")]
+        [global::System.Configuration.DefaultSettingValueAttribute("54, 106, 179")]
         public global::System.Drawing.Color ForeColor {
             get {
                 return ((global::System.Drawing.Color)(this["ForeColor"]));

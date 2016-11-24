@@ -31,60 +31,12 @@ namespace MediaPlayer
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ImportMusicForm imf = new ImportMusicForm();
-            imf.Progress += Imf_Progress;
-            imf.Show();
-        }
 
-        private void Imf_Progress(object sender, Track track)
-        {
-            this.listView1.AddObject(track);
-            this.Colorize(this);
-        }
 
-        public class TrackArtistComparer : IEqualityComparer<Track>
-        {
-            public bool Equals(Track x, Track y)
-            {
-                return x.Artist == y.Artist;
-            }
-
-            public int GetHashCode(Track obj)
-            {
-                return obj.GetHashCode();
-            }
-        }
         private void button2_Click(object sender, EventArgs e)
         {
 
         }
-        public void LoadMusic()
-        {
-            TreeNode artistsNode = treeView1.Nodes[0].Nodes[0]; 
-            try
-            {
-                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
-                {
-                    var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist);
-                    listView1.ReloadListView(tracks);
-                    Colorize(listView1);
-                    var artists = dbContext.Tracks.Distinct(new TrackArtistComparer());
-                    artistsNode.Nodes.Clear();
-                    foreach(Track t in artists)
-                    {
-                        artistsNode.Nodes.Add(t.Artist);
-                       
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-               
-            }
-        }
-
         public void Colorize(Control c)
         {
             var GlobalBackColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
@@ -194,65 +146,19 @@ namespace MediaPlayer
         public List<IMusicService> MusicServices = new List<IMusicService>();
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.viewStack1.AddView(new ColorChooserView(this));
+            this.viewStack1.AddView(new LibraryView(this));
+            this.viewStack1.Navigate("urn:library");
             Colorize(this);
-            LoadMusic();
         }
         public Playlist CurrentPlaylist { get; set; }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            new ColorChooser(this).Show();
+            this.viewStack1.Navigate("urn:library");
         }
         public Track CurrentTrack { get; set; }
        
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                var item = listView1.SelectedItems[0];
-                Track t = (Track)item.Tag;
-                Play(t);
-
-            }
-        }
-        public void Play(Track track)
-        {
-            if (track == null)
-                return;
-            foreach (IMusicService m in this.MusicServices)
-            {
-                if (m.Play(track.Name, track.Artist, track.Album))
-                {
-                    CurrentTrack = track;
-                    Colorize(this);
-                    listView1.SelectedItems.Clear();
-                    Playlist playlist = new Models.Playlist();
-                    foreach (ListViewItem i in this.listView1.Items)
-                    {
-                        playlist.Tracks.Add((Track)i.Tag);
-                    }
-                    PlaylistListView.ReloadListView(playlist.Tracks);
-                    break;
-                }
-            }
-        }
-        public void Play(Track track, Playlist playlist)
-        {
-            foreach (IMusicService m in this.MusicServices)
-            {
-                if (track == null)
-                    break;
-                if (m.Play(track.Name, track.Artist, track.Album))
-                {
-                    CurrentTrack = track;
-                    Colorize(this);
-
-                    PlaylistListView.ReloadListView(playlist.Tracks);
-                    break;
-                }
-            }
-        }
-
         public IMusicService MusicService { get; set; }
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -263,6 +169,11 @@ namespace MediaPlayer
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            viewStack1.Navigate("urn:color:chooser");
         }
     }
     public static class Utils

@@ -18,7 +18,7 @@
       <Value Profile="(Default)">237, 242, 248</Value>
     </Setting>
     <Setting Name="ForeColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">30, 63, 98</Value>
+      <Value Profile="(Default)">54, 106, 179</Value>
     </Setting>
     <Setting Name="AlternateRowColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">224, 234, 243</Value>
