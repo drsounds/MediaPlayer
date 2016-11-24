@@ -14,7 +14,7 @@ namespace MediaPlayer
 {
     public partial class LibraryView : View
     {
-
+        public ILibraryProvider LibraryProvider = new LocalLibraryProvider();
         public override bool AcceptsUri(string uri)
         {
             return new Regex("urn:library").IsMatch(uri);
@@ -43,31 +43,12 @@ namespace MediaPlayer
             TreeNode artistsNode = treeView1.Nodes[0].Nodes[0];
             try
             {
-                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
-                {
-                    var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist);
-                    listView1.ReloadListView(tracks);
-                    var artists = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Artist from Tracks ORDER BY Artist ASC");
-                    
-                    artistsNode.Nodes.Clear();
-                    foreach (string t in artists)
-                    {
-                        TreeNode n = artistsNode.Nodes.Add(t);
-                        n.Tag = "SELECT * FROM Tracks WHERE artist = '" + t.Replace("'", "") + "'";
-                        var albums = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Album FROM tracks WHERE artist = '" + t.Replace("'", "") + "'");
-                    //    TreeNode nAlbums = n.Nodes.Add("Albums");
-                        foreach(string album in albums)
-                        {
-                            if (album == null)
-                                continue;
-                            TreeNode nAlbum = n.Nodes.Add(album);
 
-                            nAlbum.Tag = "SELECT * FROM Tracks WHERE Artist = '" + t + "' AND Album = '" + album.Replace("'", "''") + "'";
-                     
-                        }
-                    }
+                var tracks = LibraryProvider.GetAllTracks();
+                    listView1.ReloadListView(tracks);
+                    
                     MainForm.Colorize(listView1);
-                }
+                
             }
             catch (Exception e)
             {
@@ -81,8 +62,8 @@ namespace MediaPlayer
             {
                 using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
                 {
-                   
-                    var tracks = dbContext.Tracks.SqlQuery(query);
+
+                    var tracks = LibraryProvider.GetTracksByUri(query);
                     listView1.ReloadListView(tracks);
                     MainForm.Colorize(listView1);
                     
@@ -228,7 +209,7 @@ namespace MediaPlayer
         }
         public void Search(string q)
         {
-            var query = "SELECT * FROM Tracks WHERE Name LIKE '%" + q + "%' OR Artist LIKE '%" + q + "%' OR Album LIKE '%" + q + "%'";
+            var query = "urn:search:" + q; //"SELECT * FROM Tracks WHERE Name LIKE '%" + q + "%' OR Artist LIKE '%" + q + "%' OR Album LIKE '%" + q + "%'";
             LoadMusic(query);
             var node = treeView1.Nodes[1].Nodes.Add(q);
             node.Tag = query;

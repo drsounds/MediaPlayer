@@ -8,20 +8,14 @@ using System.Threading.Tasks;
 
 namespace MediaPlayer.Models
 {
-    public class Track
+    public class Track : Model
     {
-
-        public string Name { get; set; }
         public string Artist { get; set; }
         public string Album { get; set; }
         public string Genre { get; set; }
         public string Composer { get; set; }
         public string Version { get; set; }
         public string Edit { get; set; }
-        [Index(IsUnique =true)]
-        public string Url { get; set; }
-        [Key]
-        public int ID { get; set; }
 
         public int Compare(Track x, Track y)
         {
