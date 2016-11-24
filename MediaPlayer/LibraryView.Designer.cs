@@ -81,11 +81,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(950, 565);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1093, 565);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(950, 565);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1093, 565);
             this.toolStripContainer1.TabIndex = 6;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -108,8 +108,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(950, 565);
-            this.splitContainer1.SplitterDistance = 175;
+            this.splitContainer1.Size = new System.Drawing.Size(1093, 565);
+            this.splitContainer1.SplitterDistance = 201;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -122,24 +122,30 @@
             this.treeView1.Location = new System.Drawing.Point(0, 32);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node1";
+            treeNode1.Tag = "SELECT DISTINCT Artist FROM Tracks";
             treeNode1.Text = "Artists";
             treeNode2.Name = "Node2";
             treeNode2.Text = "Albums";
             treeNode3.Name = "Node3";
             treeNode3.Text = "Composers";
             treeNode4.Name = "Node0";
+            treeNode4.Tag = "SELECT * FROM Tracks";
             treeNode4.Text = "All Music";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
-            this.treeView1.Size = new System.Drawing.Size(175, 501);
+            this.treeView1.Size = new System.Drawing.Size(201, 501);
             this.treeView1.TabIndex = 5;
+            this.treeView1.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCollapse);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseDown);
+            this.treeView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseUp);
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 533);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(175, 32);
+            this.panel6.Size = new System.Drawing.Size(201, 32);
             this.panel6.TabIndex = 4;
             // 
             // panel4
@@ -149,12 +155,12 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(175, 32);
+            this.panel4.Size = new System.Drawing.Size(201, 32);
             this.panel4.TabIndex = 2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(95, 4);
+            this.button2.Location = new System.Drawing.Point(78, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -163,7 +169,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 6);
+            this.textBox1.Location = new System.Drawing.Point(3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(69, 20);
             this.textBox1.TabIndex = 0;
@@ -186,8 +192,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.panel8);
             this.splitContainer2.Panel2.Controls.Add(this.panel7);
             this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
-            this.splitContainer2.Size = new System.Drawing.Size(774, 565);
-            this.splitContainer2.SplitterDistance = 559;
+            this.splitContainer2.Size = new System.Drawing.Size(891, 565);
+            this.splitContainer2.SplitterDistance = 643;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -205,7 +211,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 32);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(559, 501);
+            this.listView1.Size = new System.Drawing.Size(643, 501);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -232,7 +238,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 533);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(559, 32);
+            this.panel5.Size = new System.Drawing.Size(643, 32);
             this.panel5.TabIndex = 3;
             // 
             // panel3
@@ -241,20 +247,20 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(559, 32);
+            this.panel3.Size = new System.Drawing.Size(643, 32);
             this.panel3.TabIndex = 1;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(-111, 3);
+            this.button1.Location = new System.Drawing.Point(5, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Scan library";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // PlaylistListView
             // 
@@ -264,14 +270,17 @@
             this.columnHeader1});
             this.PlaylistListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PlaylistListView.ForeColor = System.Drawing.Color.Navy;
+            this.PlaylistListView.FullRowSelect = true;
             this.PlaylistListView.HideSelection = false;
             this.PlaylistListView.Location = new System.Drawing.Point(0, 32);
             this.PlaylistListView.Name = "PlaylistListView";
-            this.PlaylistListView.Size = new System.Drawing.Size(214, 501);
+            this.PlaylistListView.Size = new System.Drawing.Size(247, 501);
             this.PlaylistListView.TabIndex = 5;
             this.PlaylistListView.UseCompatibleStateImageBehavior = false;
             this.PlaylistListView.View = System.Windows.Forms.View.Details;
+            this.PlaylistListView.SelectedIndexChanged += new System.EventHandler(this.PlaylistListView_SelectedIndexChanged);
             this.PlaylistListView.VisibleChanged += new System.EventHandler(this.PlaylistListView_VisibleChanged);
+            this.PlaylistListView.DoubleClick += new System.EventHandler(this.PlaylistListView_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -283,7 +292,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel8.Location = new System.Drawing.Point(0, 533);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(214, 32);
+            this.panel8.Size = new System.Drawing.Size(247, 32);
             this.panel8.TabIndex = 4;
             // 
             // panel7
@@ -291,7 +300,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(214, 32);
+            this.panel7.Size = new System.Drawing.Size(247, 32);
             this.panel7.TabIndex = 2;
             // 
             // menuStrip1
@@ -340,7 +349,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "LibraryView";
-            this.Size = new System.Drawing.Size(950, 565);
+            this.Size = new System.Drawing.Size(1093, 565);
             this.Load += new System.EventHandler(this.LibraryView_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);

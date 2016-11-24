@@ -60,12 +60,13 @@ namespace MediaPlayer
                     }
                     else
                     {
-                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.7);
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.2);
                         listView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
-                        if (listView.Name == "PlaylistListView")
-                        {
-                            listView.BackColor = listView.BackColor.Darken(1.8);
-                        }
+                        
+                    }
+                    if (listView.Name == "PlaylistListView")
+                    {
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.4);
                     }
                     int i = 0;
                     foreach (ListViewItem item in listView.Items)
@@ -80,7 +81,7 @@ namespace MediaPlayer
                         {
                             item.BackColor = listView.BackColor;
                             item.ForeColor = listView.ForeColor;
-                            if ((i % 2) == 0)
+                            if ((i % 2) != 0)
                             {
                                 if (Properties.Settings.Default.AlternatingRows)
                                     if (Properties.Settings.Default.Light)
@@ -93,7 +94,7 @@ namespace MediaPlayer
                                     }
                                     else
                                     {
-                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkAlternateRowColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.75);
+                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.95);
                                         if (listView.Name == "PlaylistListView")
                                         {
                                             item.BackColor = listView.BackColor;
@@ -122,7 +123,7 @@ namespace MediaPlayer
                     }
                     else
                     {
-                        treeView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.7);
+                        treeView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.2);
                         treeView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
 
                     }

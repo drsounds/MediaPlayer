@@ -47,14 +47,26 @@ namespace MediaPlayer
                 {
                     var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist);
                     listView1.ReloadListView(tracks);
-                    MainForm.Colorize(listView1);
-                    var artists = dbContext.Tracks.Distinct(new TrackArtistComparer());
+                    var artists = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Artist from Tracks ORDER BY Artist ASC");
+                    
                     artistsNode.Nodes.Clear();
-                    foreach (Track t in artists)
+                    foreach (string t in artists)
                     {
-                        artistsNode.Nodes.Add(t.Artist);
+                        TreeNode n = artistsNode.Nodes.Add(t);
+                        n.Tag = "SELECT * FROM Tracks WHERE artist = '" + t.Replace("'", "") + "'";
+                        var albums = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Album FROM tracks WHERE artist = '" + t.Replace("'", "") + "'");
+                    //    TreeNode nAlbums = n.Nodes.Add("Albums");
+                        foreach(string album in albums)
+                        {
+                            if (album == null)
+                                continue;
+                            TreeNode nAlbum = n.Nodes.Add(album);
 
+                            nAlbum.Tag = "SELECT * FROM Tracks WHERE Artist = '" + t + "' AND Album = '" + album.Replace("'", "''") + "'";
+                     
+                        }
                     }
+                    MainForm.Colorize(listView1);
                 }
             }
             catch (Exception e)
@@ -62,7 +74,25 @@ namespace MediaPlayer
 
             }
         }
+        public void LoadMusic(string query)
+        {
+            TreeNode artistsNode = treeView1.Nodes[0].Nodes[0];
+            try
+            {
+                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+                {
+                   
+                    var tracks = dbContext.Tracks.SqlQuery(query);
+                    listView1.ReloadListView(tracks);
+                    MainForm.Colorize(listView1);
+                    
+                }
+            }
+            catch (Exception e)
+            {
 
+            }
+        }
         private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -82,14 +112,15 @@ namespace MediaPlayer
                 if (m.Play(track.Name, track.Artist, track.Album))
                 {
                     MainForm.CurrentTrack = track;
-                    MainForm.Colorize(this);
                     listView1.SelectedItems.Clear();
                     Playlist playlist = new Models.Playlist();
+                    MainForm.CurrentPlaylist = playlist;
                     foreach (ListViewItem i in this.listView1.Items)
                     {
                         playlist.Tracks.Add((Track)i.Tag);
                     }
                     PlaylistListView.ReloadListView(playlist.Tracks);
+                    MainForm.Colorize(this);
                     break;
                 }
             }
@@ -103,9 +134,10 @@ namespace MediaPlayer
                 if (m.Play(track.Name, track.Artist, track.Album))
                 {
                     MainForm.CurrentTrack = track;
-                    MainForm.Colorize(this);
 
+                    MainForm.CurrentPlaylist = playlist;
                     PlaylistListView.ReloadListView(playlist.Tracks);
+                    MainForm.Colorize(this);
                     break;
                 }
             }
@@ -139,6 +171,60 @@ namespace MediaPlayer
 
         private void PlaylistListView_VisibleChanged(object sender, EventArgs e)
         {
+        }
+
+        private void PlaylistListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ImportMusicForm imf = new ImportMusicForm();
+            imf.Progress += Imf_Progress;
+            imf.Show();
+
+        }
+
+        private void PlaylistListView_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (PlaylistListView.SelectedItems.Count > 0)
+            {
+                var item = PlaylistListView.SelectedItems[0];
+                Track t = (Track)item.Tag;
+                Play(t, MainForm.CurrentPlaylist);
+                PlaylistListView.EnsureVisible(0);
+
+            }
+        }
+
+        private void treeView1_MouseUp(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void treeView1_MouseDown(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void treeView1_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+            var item = treeView1.SelectedNode;
+            try
+            {
+                string sql = (string)item.Tag;
+                LoadMusic(sql);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
