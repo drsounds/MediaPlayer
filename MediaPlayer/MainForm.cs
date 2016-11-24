@@ -94,7 +94,7 @@ namespace MediaPlayer
                                     }
                                     else
                                     {
-                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(.95);
+                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.1);
                                         if (listView.Name == "PlaylistListView")
                                         {
                                             item.BackColor = listView.BackColor;

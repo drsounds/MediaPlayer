@@ -35,6 +35,7 @@
             treeNode1,
             treeNode2,
             treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Search");
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -131,8 +132,11 @@
             treeNode4.Name = "Node0";
             treeNode4.Tag = "SELECT * FROM Tracks";
             treeNode4.Text = "All Music";
+            treeNode5.Name = "Search";
+            treeNode5.Text = "Search";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode4,
+            treeNode5});
             this.treeView1.Size = new System.Drawing.Size(201, 501);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCollapse);
@@ -166,6 +170,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 

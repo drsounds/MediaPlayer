@@ -226,5 +226,16 @@ namespace MediaPlayer
 
             }
         }
+        public void Search(string q)
+        {
+            var query = "SELECT * FROM Tracks WHERE Name LIKE '%" + q + "%' OR Artist LIKE '%" + q + "%' OR Album LIKE '%" + q + "%'";
+            LoadMusic(query);
+            var node = treeView1.Nodes[1].Nodes.Add(q);
+            node.Tag = query;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Search(textBox1.Text);
+        }
     }
 }
