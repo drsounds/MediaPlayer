@@ -41,7 +41,7 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(25, 30);
-            this.trackBar1.Maximum = 240;
+            this.trackBar1.Maximum = 360;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(448, 45);
             this.trackBar1.TabIndex = 0;
@@ -102,7 +102,7 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // ColorChooser
+            // ColorChooserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,7 +114,7 @@
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.trackBar1);
             this.ForeColor = System.Drawing.Color.White;
-            this.Name = "ColorChooser";
+            this.Name = "ColorChooserView";
             this.Size = new System.Drawing.Size(481, 185);
             this.Load += new System.EventHandler(this.ColorChooser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

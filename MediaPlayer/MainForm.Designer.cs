@@ -32,9 +32,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.viewStack1 = new ViewStack();
-            this.button6 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.viewStack1 = new ViewStack();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -42,7 +42,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = global::MediaPlayer.Properties.Resources.header;
+            this.panel2.BackgroundImage = global::MediaPlayer.Properties.Resources.header3;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.axWindowsMediaPlayer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -53,19 +53,18 @@
             // 
             // axWindowsMediaPlayer1
             // 
-            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 0);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 15);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1134, 60);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(143, 33);
             this.axWindowsMediaPlayer1.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::MediaPlayer.Properties.Resources.header2;
+            this.panel1.BackgroundImage = global::MediaPlayer.Properties.Resources.header3;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button6);
@@ -76,13 +75,15 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // viewStack1
+            // button1
             // 
-            this.viewStack1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.viewStack1.Location = new System.Drawing.Point(0, 55);
-            this.viewStack1.Name = "viewStack1";
-            this.viewStack1.Size = new System.Drawing.Size(1134, 491);
-            this.viewStack1.TabIndex = 4;
+            this.button1.Location = new System.Drawing.Point(357, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(133, 42);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Settings";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button6
             // 
@@ -94,15 +95,13 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button1
+            // viewStack1
             // 
-            this.button1.Location = new System.Drawing.Point(357, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 42);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Settings";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.viewStack1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewStack1.Location = new System.Drawing.Point(0, 55);
+            this.viewStack1.Name = "viewStack1";
+            this.viewStack1.Size = new System.Drawing.Size(1134, 491);
+            this.viewStack1.TabIndex = 4;
             // 
             // MainForm
             // 

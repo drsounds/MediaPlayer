@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +38,14 @@ namespace MediaPlayer
         {
 
         }
+        
         public void Colorize(Control c)
         {
+
             var GlobalBackColor = AdjustColor(Properties.Settings.Default.ForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
             this.BackColor = GlobalBackColor;
+            panel2.BackgroundImage = Properties.Resources.header3.SetHue(Properties.Settings.Default.Hue - 140);
+            panel1.BackgroundImage = Properties.Resources.header3.SetHue(Properties.Settings.Default.Hue - 140);
             try
             {
                 if (c.GetType() == typeof(ListView))
@@ -178,6 +183,102 @@ namespace MediaPlayer
     }
     public static class Utils
     {
+        // http://stackoverflow.com/questions/1079820/rotate-hue-using-imageattributes-in-c-sharp
+        public static Bitmap SetHue(this Bitmap bmpElement, float value)
+        {
+
+            const float wedge = 120f / 360;
+
+            var hueDegree = -value / 360 % 1;
+            if (hueDegree < 0) hueDegree += 1;
+
+            var matrix = new float[5][];
+
+            if (hueDegree <= wedge)
+            {
+                //Red..Green
+                var theta = hueDegree / wedge * (Math.PI / 2);
+                var c = (float)Math.Cos(theta);
+                var s = (float)Math.Sin(theta);
+
+                matrix[0] = new float[] { c, 0, s, 0, 0 };
+                matrix[1] = new float[] { s, c, 0, 0, 0 };
+                matrix[2] = new float[] { 0, s, c, 0, 0 };
+                matrix[3] = new float[] { 0, 0, 0, 1, 0 };
+                matrix[4] = new float[] { 0, 0, 0, 0, 1 };
+
+            }
+            else if (hueDegree <= wedge * 2)
+            {
+                //Green..Blue
+                var theta = (hueDegree - wedge) / wedge * (Math.PI / 2);
+                var c = (float)Math.Cos(theta);
+                var s = (float)Math.Sin(theta);
+
+                matrix[0] = new float[] { 0, s, c, 0, 0 };
+                matrix[1] = new float[] { c, 0, s, 0, 0 };
+                matrix[2] = new float[] { s, c, 0, 0, 0 };
+                matrix[3] = new float[] { 0, 0, 0, 1, 0 };
+                matrix[4] = new float[] { 0, 0, 0, 0, 1 };
+
+            }
+            else
+            {
+                //Blue..Red
+                var theta = (hueDegree - 2 * wedge) / wedge * (Math.PI / 2);
+                var c = (float)Math.Cos(theta);
+                var s = (float)Math.Sin(theta);
+
+                matrix[0] = new float[] { s, c, 0, 0, 0 };
+                matrix[1] = new float[] { 0, s, c, 0, 0 };
+                matrix[2] = new float[] { c, 0, s, 0, 0 };
+                matrix[3] = new float[] { 0, 0, 0, 1, 0 };
+                matrix[4] = new float[] { 0, 0, 0, 0, 1 };
+            }
+
+            Bitmap originalImage = bmpElement;
+
+            var imageAttributes = new ImageAttributes();
+            imageAttributes.ClearColorMatrix();
+            imageAttributes.SetColorMatrix(new ColorMatrix(matrix), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            Bitmap destImage = new Bitmap(originalImage);
+            var grpElement = Graphics.FromImage(destImage);
+            grpElement.DrawImage(
+                bmpElement, new Rectangle(0, 0, destImage.Width, destImage.Height),
+                0, 0, originalImage.Width, originalImage.Height,
+                GraphicsUnit.Pixel, imageAttributes
+                );
+            return destImage;
+        }
+        public static Image ChangeHue(this Image image, double degrees)
+        {
+            double r = degrees * System.Math.PI /360; // degrees to radians
+            ImageAttributes imageAttributes = new ImageAttributes();
+
+            float[][] colorMatrixElements = {
+            new float[] {(float)System.Math.Cos(r),  (float)System.Math.Sin(r),  0,  0, 0},
+            new float[] {(float)-System.Math.Sin(r),  (float)-System.Math.Cos(r),  0,  0, 0},
+            new float[] {0,  0,  2,  0, 0},
+            new float[] {0,  0,  0,  1, 0},
+            new float[] {0, 0, 0, 0, 1}};
+
+            ColorMatrix colorMatrix = new ColorMatrix(colorMatrixElements);
+            imageAttributes.SetColorMatrix(
+             colorMatrix,
+            ColorMatrixFlag.Default,
+           ColorAdjustType.Bitmap);
+            Image destImage = new Bitmap(image);
+            var g = Graphics.FromImage(destImage);
+            g.DrawImage(
+               image,
+               new Rectangle(0, 0, image.Width, image.Height),  // destination rectangle 
+                0, 0,        // upper-left corner of source rectangle 
+                image.Width,       // width of source rectangle
+                image.Height,      // height of source rectangle
+                GraphicsUnit.Pixel,
+               imageAttributes);
+            return destImage;
+        }
         public static Color Darken(this Color color, double darkenAmount)
         {
             HSLColor hslColor = new HSLColor(color);

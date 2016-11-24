@@ -16,7 +16,7 @@ namespace ColorDemo
         private double saturation = 1.0;
         private double luminosity = 1.0;
 
-        private const double scale = 240.0;
+        private const double scale = 360.0;
 
         public double Hue
         {
