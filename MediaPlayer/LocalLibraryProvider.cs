@@ -63,25 +63,30 @@ namespace MediaPlayer
 
         public List<Track> GetTracksByArtist(string artist)
         {
-            throw new NotImplementedException();
+            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            {
+                var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist).Where((t) => t.Artist == artist);
+                return tracks.ToList();
+            }
         }
 
         public List<Track> GetTracksByUri(string query)
         {
-            if (new Regex("urn:artist:(.*):track").IsMatch(query))
+            if (new Regex("^urn:artist:(.*):track$").IsMatch(query))
             {
-                string q = new Regex("urn:artist:(.*):track").Split(query, 1)[0];
-                return this.GetTracksByArtist(q);
+                var matches = new Regex("(urn:artist:)(.*)(:track)").Split(query);
+                return this.GetTracksByArtist(matches[2]);
             }
-            if (new Regex("urn:artist:(.*):album").IsMatch(query))
+            if (new Regex("^urn:artist:(.*):album$").IsMatch(query))
             {
-                string q = new Regex("urn:artist:(.*):album").Split(query, 1)[0];
-                return this.GetTracksByArtist(q);
+                var matches = new Regex("(urn:artist:)(.*)(:album)").Split(query);
+                return this.GetTracksByArtist(matches[2]);
             }
-            if (new Regex("urn:artist:(.*):album:(.*)").IsMatch(query))
+            if (new Regex("^urn:artist:(.*):album:(.*):track$").IsMatch(query))
             {
-                string artist = new Regex("^urn:artist:(.*):album:(.*)$").Split(query, 1)[0];
-                string album = new Regex("^urn:artist:(.*):album:(.*)$").Split(query, 1)[1];
+                var matches = new Regex("(urn:artist:)(.*)(:album:)(.*)(:track)$").Split(query);
+                string artist = matches[2];
+                string album = matches[4];
                 return this.GetTracksByAlbumFromArtist(artist, album);
             }
             if (new Regex("urn:search:(.*)").IsMatch(query))

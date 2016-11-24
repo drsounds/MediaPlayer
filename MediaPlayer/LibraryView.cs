@@ -46,6 +46,19 @@ namespace MediaPlayer
 
                 var tracks = LibraryProvider.GetAllTracks();
                     listView1.ReloadListView(tracks);
+                var artists = LibraryProvider.GetAllArtists();
+                foreach (Artist artist in artists)
+                {
+                    TreeNode tn = treeView1.Nodes[0].Nodes[0].Nodes.Add(artist.Name);
+                    tn.Tag = "urn:artist:" + artist.Name + ":track";
+                    var albums = LibraryProvider.GetAlbumsByArtist(artist.Name);
+                    foreach(Album album in albums)
+                    {
+                        TreeNode trAlbum = tn.Nodes.Add(album.Name);
+                        trAlbum.Tag = "urn:artist:" + artist.Name + ":album:" + album.Name + ":track";
+                        tn.Nodes.Add(trAlbum);
+                    }
+                }
                     
                     MainForm.Colorize(listView1);
                 
@@ -60,14 +73,13 @@ namespace MediaPlayer
             TreeNode artistsNode = treeView1.Nodes[0].Nodes[0];
             try
             {
-                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
-                {
+            
 
-                    var tracks = LibraryProvider.GetTracksByUri(query);
-                    listView1.ReloadListView(tracks);
-                    MainForm.Colorize(listView1);
+                var tracks = LibraryProvider.GetTracksByUri(query);
+                listView1.ReloadListView(tracks);
+                MainForm.Colorize(listView1);
                     
-                }
+                
             }
             catch (Exception e)
             {

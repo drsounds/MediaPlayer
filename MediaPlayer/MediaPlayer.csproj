@@ -88,6 +88,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Album.cs" />
+    <Compile Include="Artist.cs" />
     <Compile Include="ColorChooserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +97,7 @@
       <DependentUpon>ColorChooserView.cs</DependentUpon>
     </Compile>
     <Compile Include="HSLColor.cs" />
+    <Compile Include="ILibraryProvider.cs" />
     <Compile Include="ImportMusicForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +111,7 @@
     <Compile Include="LibraryView.Designer.cs">
       <DependentUpon>LibraryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalLibraryProvider.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +120,7 @@
     </Compile>
     <Compile Include="MediaPlayerDatabaseContext.cs" />
     <Compile Include="MediaPlayerMusicService.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Models\AudioFile.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Program.cs" />
