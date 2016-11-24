@@ -60,13 +60,13 @@ namespace MediaPlayer
                     }
                     else
                     {
-                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.2);
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.5);
                         listView.ForeColor = AdjustColor(Properties.Settings.Default.DarkForeColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation);
                         
                     }
                     if (listView.Name == "PlaylistListView")
                     {
-                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.4);
+                        listView.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.8);
                     }
                     int i = 0;
                     foreach (ListViewItem item in listView.Items)
@@ -94,7 +94,7 @@ namespace MediaPlayer
                                     }
                                     else
                                     {
-                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.1);
+                                        item.BackColor = AdjustColor(Properties.Settings.Default.DarkBackColor, Properties.Settings.Default.Hue, Properties.Settings.Default.Saturation).Darken(1.4);
                                         if (listView.Name == "PlaylistListView")
                                         {
                                             item.BackColor = listView.BackColor;
@@ -102,7 +102,7 @@ namespace MediaPlayer
                                     }
                                 else
                                 {
-                                    item.BackColor = listView.BackColor;
+                                    item.BackColor = listView.BackColor.Darken(1.2);
                                     if (listView.Name == "PlaylistListView")
                                     {
                                         item.BackColor = listView.BackColor;
