@@ -97,7 +97,9 @@
       <DependentUpon>ColorChooserView.cs</DependentUpon>
     </Compile>
     <Compile Include="HSLColor.cs" />
-    <Compile Include="ILibraryProvider.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Services\ICuratorMusicService.cs" />
+    <Compile Include="Services\IMusicLibraryService.cs" />
     <Compile Include="ImportMusicForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +107,11 @@
       <DependentUpon>ImportMusicForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IMusicService.cs" />
+    <Compile Include="Services\IMusicBrowsingService.cs" />
+    <Compile Include="Services\IMusicService.cs" />
+    <Compile Include="Services\IMusicStoreService.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IStreamingService.cs" />
     <Compile Include="LibraryView.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace MediaPlayer
 {
-    public class LocalLibraryProvider : ILibraryProvider
+    public class LocalLibraryProvider : IMusicLibraryService
     {
         public List<Album> GetAlbumsByArtist(string artist)
      

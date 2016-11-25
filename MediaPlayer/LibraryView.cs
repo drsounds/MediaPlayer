@@ -14,7 +14,7 @@ namespace MediaPlayer
 {
     public partial class LibraryView : View
     {
-        public ILibraryProvider LibraryProvider = new LocalLibraryProvider();
+        public IMusicLibraryService LibraryProvider = new LocalLibraryProvider();
         public override bool AcceptsUri(string uri)
         {
             return new Regex("urn:library").IsMatch(uri);

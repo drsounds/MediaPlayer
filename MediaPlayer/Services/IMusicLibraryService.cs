@@ -10,7 +10,7 @@ namespace MediaPlayer
     /// <summary>
     /// A library provider
     /// </summary>
-    public interface ILibraryProvider
+    public interface IMusicLibraryService : IMusicService
     {
         List<Track> GetAllTracks();
         List<Track> GetTracksByArtist(string artist);
