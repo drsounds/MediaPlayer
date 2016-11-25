@@ -108,6 +108,9 @@
     <Compile Include="HSLColor.cs" />
     <Compile Include="ILocalLibraryProvider.cs" />
     <Compile Include="MenuItem.cs" />
+    <Compile Include="ModelListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Services\ICuratorMusicService.cs" />
     <Compile Include="Services\IMusicLibraryService.cs" />

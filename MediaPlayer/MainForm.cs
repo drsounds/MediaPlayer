@@ -43,11 +43,15 @@ namespace Bungalow
         public List<IMusicService> MusicServices = new List<IMusicService>();
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.viewStack1.AddView(new BrowseView(this));
             this.viewStack1.AddView(new ColorChooserView(this));
             this.viewStack1.AddView(new LibraryView(this));
             this.viewStack1.Navigate("urn:library");
+            this.Header.MenuItems.Add(new MenuItem() { Name = "Now Playing", Uri = "urn:now:playing" });
             this.Header.MenuItems.Add(new MenuItem() { Name = "Browse", Uri = "urn:browse" });
             this.Header.MenuItems.Add(new MenuItem() { Name = "Library", Uri = "urn:library" });
+            this.Header.MenuItems.Add(new MenuItem() { Name = "Store", Uri = "urn:store" });
+            this.Header.MenuItems.Add(new MenuItem() { Name = "Settings", Uri = "urn:color:chooser" });
             this.Header.MenuItemChanged += Header_MenuItemChanged;
             this.Colorize();
         }

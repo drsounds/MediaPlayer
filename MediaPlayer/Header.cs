@@ -82,7 +82,7 @@ namespace Bungalow
 
         public void Draw(Graphics g)
         {
-
+            Font font = new Font("Arial", 8, FontStyle.Bold);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             g.DrawImage(this.BackgroundImage, new Rectangle(0, 0, this.Width * 2, this.Height));
             int x = 20;
@@ -97,13 +97,16 @@ namespace Bungalow
                     backColor = foreColor;
                     g.FillRectangle(new SolidBrush(backColor), btnBounds);
                     foreColor = Color.White;
+
                 }
                 else
                 {
+                    g.DrawRectangle(new Pen(new SolidBrush(Color.White)), new Rectangle(btnBounds.X + 1, btnBounds.Y + 1, btnBounds.Width - 2, btnBounds.Height));
                     g.DrawRectangle(new Pen(new SolidBrush(foreColor)), btnBounds);
+                    g.DrawString(item.Name, font, new SolidBrush(Color.White), new Point((int)((btnBounds.X) + (btnBounds.Width / 2) - ((g.MeasureString(item.Name, this.Font).Width) / 2)), (int)(btnBounds.Y + 1 + (btnBounds.Height / 2) - (g.MeasureString(item.Name, this.Font).Height) / 2)));
 
                 }
-                g.DrawString(item.Name, this.Font, new SolidBrush(foreColor), new Point((int)((btnBounds.X) + (btnBounds.Width / 2 ) - ((g.MeasureString(item.Name, this.Font).Width) / 2)), (int)((btnBounds.Y + btnBounds.Height) / 2 - (g.MeasureString(item.Name, this.Font).Height) / 2)));
+                g.DrawString(item.Name, font, new SolidBrush(foreColor), new Point((int)((btnBounds.X) + (btnBounds.Width / 2 ) - ((g.MeasureString(item.Name, this.Font).Width) / 2)), (int)(btnBounds.Y + (btnBounds.Height / 2) - (g.MeasureString(item.Name, this.Font).Height) / 2)));
                 x += MENUITEM_WIDTH + MENUITEM_PADDING * 2;
 
             }
