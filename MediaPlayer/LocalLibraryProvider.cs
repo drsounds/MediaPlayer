@@ -8,8 +8,40 @@ using System.Text.RegularExpressions;
 
 namespace MediaPlayer
 {
-    public class LocalLibraryProvider : IMusicLibraryService
+    public class LocalLibraryProvider : IMusicLibraryService, IStreamingMusicService
     {
+        public Track CurrentTrack
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Duration
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool IsPlaying
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public List<Album> GetAlbumsByArtist(string artist)
      
         {
@@ -99,6 +131,36 @@ namespace MediaPlayer
                 }
             }
             return new List<Track>();
+        }
+
+        public bool IsAvailable(Track track)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Pause()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Play(Track track)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Play(string name, string artist, string album)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Resume()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Seek(int pos)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MediaPlayer
 {
     public partial class LibraryView : View
     {
-        public IMusicLibraryService LibraryProvider = new LocalLibraryProvider();
+        public IMusicLibraryService MusicLibrary;
         public override bool AcceptsUri(string uri)
         {
             return new Regex("urn:library").IsMatch(uri);
@@ -26,10 +26,12 @@ namespace MediaPlayer
         public LibraryView()
         {
             InitializeComponent();
+            MusicLibrary = new LocalLibraryProvider();
         }
         public LibraryView(MainForm mainForm) : base(mainForm)
         {
             InitializeComponent();
+            MusicLibrary = new LocalLibraryProvider();
             LoadMusic();
         }
 
@@ -44,14 +46,14 @@ namespace MediaPlayer
             try
             {
 
-                var tracks = LibraryProvider.GetAllTracks();
+                var tracks = MusicLibrary.GetAllTracks();
                     listView1.ReloadListView(tracks);
-                var artists = LibraryProvider.GetAllArtists();
+                var artists = MusicLibrary.GetAllArtists();
                 foreach (Artist artist in artists)
                 {
                     TreeNode tn = treeView1.Nodes[0].Nodes[0].Nodes.Add(artist.Name);
                     tn.Tag = "urn:artist:" + artist.Name + ":track";
-                    var albums = LibraryProvider.GetAlbumsByArtist(artist.Name);
+                    var albums = MusicLibrary.GetAlbumsByArtist(artist.Name);
                     foreach(Album album in albums)
                     {
                         TreeNode trAlbum = tn.Nodes.Add(album.Name);
@@ -75,7 +77,7 @@ namespace MediaPlayer
             {
             
 
-                var tracks = LibraryProvider.GetTracksByUri(query);
+                var tracks = MusicLibrary.GetTracksByUri(query);
                 listView1.ReloadListView(tracks);
                 MainForm.Colorize(listView1);
                     
@@ -100,7 +102,7 @@ namespace MediaPlayer
         {
             if (track == null)
                 return;
-            foreach (IMusicService m in MainForm.MusicServices)
+            foreach (IStreamingMusicService m in MainForm.MusicServices)
             {
                 if (m.Play(track.Name, track.Artist, track.Album))
                 {
@@ -120,7 +122,7 @@ namespace MediaPlayer
         }
         public void Play(Track track, Playlist playlist)
         {
-            foreach (IMusicService m in MainForm.MusicServices)
+            foreach (IStreamingMusicService m in MainForm.MusicServices)
             {
                 if (track == null)
                     break;

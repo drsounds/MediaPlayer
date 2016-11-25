@@ -181,6 +181,11 @@ namespace MediaPlayer
         {
             viewStack1.Navigate("urn:color:chooser");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            viewStack1.Navigate("urn:browse");
+        }
     }
     public static class Utils
     {

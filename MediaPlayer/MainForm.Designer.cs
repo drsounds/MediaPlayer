@@ -34,7 +34,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.viewStack1 = new ViewStack();
+            this.viewStack1 = new MediaPlayer.ViewStack();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -65,7 +67,9 @@
             // 
             this.panel1.BackgroundImage = global::MediaPlayer.Properties.Resources.header3;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -102,6 +106,26 @@
             this.viewStack1.Size = new System.Drawing.Size(1134, 491);
             this.viewStack1.TabIndex = 4;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(510, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 42);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Settings";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(28, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(144, 43);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Browse";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +153,8 @@
         private ViewStack viewStack1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 
