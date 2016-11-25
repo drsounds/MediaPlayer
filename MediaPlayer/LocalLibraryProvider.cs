@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MediaPlayer.Models;
+using Bungalow.Models;
 using System.Text.RegularExpressions;
 
-namespace MediaPlayer
+namespace Bungalow
 {
     public class LocalLibraryProvider : IMusicLibraryService, IStreamingMusicService
     {
@@ -45,7 +45,7 @@ namespace MediaPlayer
         public List<Album> GetAlbumsByArtist(string artist)
      
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
             {
                 var xalbums = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Album FROM tracks WHERE artist = '" + artist.Replace("'", "") + "'");
                 List<Album> albums = new List<Album>();
@@ -61,7 +61,7 @@ namespace MediaPlayer
 
         public List<Artist> GetAllArtists()
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
             {
                 List<Artist> artists = new List<Artist>();
                 var xartists = dbContext.Database.SqlQuery<string>("SELECT DISTINCT Artist from Tracks ORDER BY Artist ASC");
@@ -77,7 +77,7 @@ namespace MediaPlayer
 
         public List<Track> GetAllTracks()
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
             {
                 var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist);
                 return tracks.ToList();
@@ -86,7 +86,7 @@ namespace MediaPlayer
 
         public List<Track> GetTracksByAlbumFromArtist(string artist, string album)
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
             {
                 var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist).Where((t) => t.Album == album).Where((t) => t.Artist == artist);
                 return tracks.ToList();
@@ -95,7 +95,7 @@ namespace MediaPlayer
 
         public List<Track> GetTracksByArtist(string artist)
         {
-            using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
             {
                 var tracks = dbContext.Tracks.OrderBy((t) => t.Name).OrderBy((t) => t.Album).OrderBy((t) => t.Artist).Where((t) => t.Artist == artist);
                 return tracks.ToList();
@@ -124,7 +124,7 @@ namespace MediaPlayer
             if (new Regex("urn:search:(.*)").IsMatch(query))
             {
                 var q = query.Substring("urn:search:".Length);
-                using (MediaPlayerDatabaseContext dbContext = new MediaPlayerDatabaseContext())
+                using (BungalowDatabaseContext dbContext = new BungalowDatabaseContext())
                 {
                     var tracks = dbContext.Tracks.SqlQuery("SELECT * FROM Tracks WHERE Name LIKE '%" + q + "%' OR Artist LIKE '%" + q + "%' OR Album LIKE '%" + q + "%'");
                     return tracks.ToList();

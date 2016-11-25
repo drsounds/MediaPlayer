@@ -1,11 +1,11 @@
-﻿using MediaPlayer.Models;
+﻿using Bungalow.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MediaPlayer.Services
+namespace Bungalow.Services
 {
     /// <summary>
     /// A service for curation

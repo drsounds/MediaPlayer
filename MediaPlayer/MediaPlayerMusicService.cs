@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MediaPlayer.Models;
+using Bungalow.Models;
 
-namespace MediaPlayer
+namespace Bungalow
 {
-    public class MediaPlayerMusicService : IStreamingMusicService
+    public class BungalowMusicService : IStreamingMusicService
     {
-        AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
-        public MediaPlayerMusicService(AxWMPLib.AxWindowsMediaPlayer mediaPlayer)
+        AxWMPLib.AxWindowsMediaPlayer Bungalow;
+        public BungalowMusicService(AxWMPLib.AxWindowsMediaPlayer Bungalow)
         {
-            this.mediaPlayer = mediaPlayer;
+            this.Bungalow = Bungalow;
         }
 
         public Track CurrentTrack
@@ -64,13 +64,13 @@ namespace MediaPlayer
 
         public bool Play(string name, string artist, string album)
         {
-            using (MediaPlayerDatabaseContext mdb = new MediaPlayerDatabaseContext())
+            using (BungalowDatabaseContext mdb = new BungalowDatabaseContext())
             {
                 try
                 {
                     var item = (from t in mdb.Tracks where t.Name == name && t.Artist == artist && t.Album == album select t.Url).First();
-                    mediaPlayer.URL = item;
-                    mediaPlayer.Ctlcontrols.play();
+                    Bungalow.URL = item;
+                    Bungalow.Ctlcontrols.play();
                     return true;
                 }
                 catch (Exception e)

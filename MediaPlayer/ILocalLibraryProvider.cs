@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using MediaPlayer.Models;
+using Bungalow.Models;
 
-namespace MediaPlayer
+namespace Bungalow
 {
     public interface ILocalLibraryProvider
     {

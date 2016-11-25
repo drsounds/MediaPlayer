@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bungalow
 {
-    /// <summary>
-    /// Music service
-    /// </summary>
-    public interface IMusicService
+
+    [Serializable]
+    public class MenuItem
     {
+        public string Name { get; set; }
+        public string Uri { get; set; }
     }
 }

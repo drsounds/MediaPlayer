@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MediaPlayer
+namespace Bungalow
 {
     public partial class ColorChooserView : View
     {
@@ -41,7 +41,7 @@ namespace MediaPlayer
         {
             Properties.Settings.Default.Hue = trackBar1.Value ;
             Properties.Settings.Default.Save();
-            MainForm.Colorize(MainForm);
+            MainForm.Colorize();
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -49,14 +49,14 @@ namespace MediaPlayer
 
             Properties.Settings.Default.Saturation = trackBar2.Value ;
             Properties.Settings.Default.Save();
-            MainForm.Colorize(MainForm);
+            MainForm.Colorize();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.Light = checkBox1.Checked;
             Properties.Settings.Default.Save();
-            MainForm.Colorize(MainForm);
+            MainForm.Colorize();
 
         }
 
@@ -65,7 +65,7 @@ namespace MediaPlayer
 
             Properties.Settings.Default.AlternatingRows = checkBox2.Checked;
             Properties.Settings.Default.Save();
-            MainForm.Colorize(MainForm);
+            MainForm.Colorize();
         }
     }
 }

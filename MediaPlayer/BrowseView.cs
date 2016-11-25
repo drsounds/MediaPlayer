@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Bungalow
 {
-    public partial class ToolButton : UserControl
+    public partial class BrowseView : View
     {
-        public ToolButton()
+        public BrowseView()
         {
             InitializeComponent();
         }
-        
-        private void ToolButton_Load(object sender, EventArgs e)
+
+        private void BrowseView_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

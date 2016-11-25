@@ -1,4 +1,4 @@
-﻿using MediaPlayer.Models;
+﻿using Bungalow.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MediaPlayer
+namespace Bungalow
 {
-    public class MediaPlayerDatabaseContext : DbContext
+    public class BungalowDatabaseContext : DbContext
     {
-        public MediaPlayerDatabaseContext() : base("MediaPlayerDatabase")
+        public BungalowDatabaseContext() : base("BungalowDatabase")
         {
             //SetProviderFactory("System.Data.SQLite", SQLiteFactory.Instance);
             //SetProviderFactory("System.Data.SQLite.EF6", SQLiteProviderFactory.Instance);

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using MediaPlayer.Models;
+using Bungalow.Models;
 
-namespace MediaPlayer
+namespace Bungalow
 {
     public partial class LibraryView : View
     {
@@ -62,7 +62,7 @@ namespace MediaPlayer
                     }
                 }
                     
-                    MainForm.Colorize(listView1);
+                    listView1.Colorize();
                 
             }
             catch (Exception e)
@@ -79,7 +79,7 @@ namespace MediaPlayer
 
                 var tracks = MusicLibrary.GetTracksByUri(query);
                 listView1.ReloadListView(tracks);
-                MainForm.Colorize(listView1);
+                listView1.Colorize();
                     
                 
             }
@@ -106,16 +106,16 @@ namespace MediaPlayer
             {
                 if (m.Play(track.Name, track.Artist, track.Album))
                 {
-                    MainForm.CurrentTrack = track;
                     listView1.SelectedItems.Clear();
                     Playlist playlist = new Models.Playlist();
-                    MainForm.CurrentPlaylist = playlist;
-                    foreach (ListViewItem i in this.listView1.Items)
+                    foreach (ListViewItem item in listView1.Items)
                     {
-                        playlist.Tracks.Add((Track)i.Tag);
+                        playlist.Tracks.Add((Track)item.Tag);
                     }
-                    PlaylistListView.ReloadListView(playlist.Tracks);
-                    MainForm.Colorize(this);
+                    MainForm.PlayContext(track, playlist);
+
+                    
+                    MainForm.Colorize();
                     break;
                 }
             }
@@ -128,11 +128,10 @@ namespace MediaPlayer
                     break;
                 if (m.Play(track.Name, track.Artist, track.Album))
                 {
-                    MainForm.CurrentTrack = track;
+                    MainForm.PlayContext(track, playlist);
 
-                    MainForm.CurrentPlaylist = playlist;
-                    PlaylistListView.ReloadListView(playlist.Tracks);
-                    MainForm.Colorize(this);
+
+                    MainForm.Colorize();
                     break;
                 }
             }
@@ -157,7 +156,7 @@ namespace MediaPlayer
         private void Imf_Progress(object sender, Track track)
         {
             this.listView1.AddObject(track);
-            this.MainForm.Colorize(this);
+            this.Colorize();
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -180,18 +179,15 @@ namespace MediaPlayer
             imf.Show();
 
         }
-
+        public class PlaylistEventArgs
+        {
+            public Playlist Playlist { get; set; }
+            public Track Track { get; set; }
+        }
+        public delegate void PlaylistEventHandler(object sender, PlaylistEventArgs e);
+        public event PlaylistEventHandler PlaylistChanged;
         private void PlaylistListView_DoubleClick(object sender, EventArgs e)
         {
-
-            if (PlaylistListView.SelectedItems.Count > 0)
-            {
-                var item = PlaylistListView.SelectedItems[0];
-                Track t = (Track)item.Tag;
-                Play(t, MainForm.CurrentPlaylist);
-                PlaylistListView.EnsureVisible(0);
-
-            }
         }
 
         private void treeView1_MouseUp(object sender, MouseEventArgs e)
@@ -231,6 +227,21 @@ namespace MediaPlayer
         private void button2_Click(object sender, EventArgs e)
         {
             Search(textBox1.Text);
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

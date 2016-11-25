@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Id3.Info;
 using Id3;
-using MediaPlayer.Models;
+using Bungalow.Models;
 
-namespace MediaPlayer
+namespace Bungalow
 {
     public partial class ImportMusicForm : Form
     {
@@ -61,7 +61,7 @@ namespace MediaPlayer
             }
         }
 
-        private MediaPlayerDatabaseContext DbContext;
+        private BungalowDatabaseContext DbContext;
         public void ScanDirectory(string path)
         {
             DirectoryInfo di = new DirectoryInfo(path);
@@ -102,7 +102,7 @@ namespace MediaPlayer
 
         private void Bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            using (DbContext = new MediaPlayerDatabaseContext())
+            using (DbContext = new BungalowDatabaseContext())
             {
                 ScanDirectory(textBox1.Text);
                 DbContext.SaveChanges();

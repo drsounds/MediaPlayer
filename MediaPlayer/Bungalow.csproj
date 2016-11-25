@@ -7,8 +7,8 @@
     <ProjectGuid>{9F062C95-C15F-45D9-85BB-70010105C87C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediaPlayer</RootNamespace>
-    <AssemblyName>MediaPlayer</AssemblyName>
+    <RootNamespace>Bungalow</RootNamespace>
+    <AssemblyName>Bungalow</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -90,14 +90,24 @@
   <ItemGroup>
     <Compile Include="Album.cs" />
     <Compile Include="Artist.cs" />
+    <Compile Include="BrowseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BrowseView.Designer.cs">
+      <DependentUpon>BrowseView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ColorChooserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ColorChooserView.Designer.cs">
       <DependentUpon>ColorChooserView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Header.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HSLColor.cs" />
     <Compile Include="ILocalLibraryProvider.cs" />
+    <Compile Include="MenuItem.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Services\ICuratorMusicService.cs" />
     <Compile Include="Services\IMusicLibraryService.cs" />
@@ -141,6 +151,7 @@
       <DependentUpon>ToolButton.cs</DependentUpon>
     </Compile>
     <Compile Include="TrackArtistComparer.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="View.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +164,9 @@
     <Compile Include="ViewStack.Designer.cs">
       <DependentUpon>ViewStack.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BrowseView.resx">
+      <DependentUpon>BrowseView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ColorChooserView.resx">
       <DependentUpon>ColorChooserView.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +178,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

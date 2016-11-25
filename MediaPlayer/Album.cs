@@ -1,4 +1,4 @@
-﻿namespace MediaPlayer
+﻿namespace Bungalow
 {
     public class Album : Model
     {

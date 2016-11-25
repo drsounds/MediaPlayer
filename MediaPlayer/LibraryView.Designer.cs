@@ -1,4 +1,4 @@
-﻿namespace MediaPlayer
+﻿namespace Bungalow
 {
     partial class LibraryView
     {
@@ -43,7 +43,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,10 +50,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.PlaylistListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,10 +63,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -108,7 +99,9 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel5);
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Size = new System.Drawing.Size(1093, 565);
             this.splitContainer1.SplitterDistance = 201;
             this.splitContainer1.SplitterWidth = 1;
@@ -179,29 +172,6 @@
             this.textBox1.Size = new System.Drawing.Size(69, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.listView1);
-            this.splitContainer2.Panel1.Controls.Add(this.panel5);
-            this.splitContainer2.Panel1.Controls.Add(this.panel3);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.PlaylistListView);
-            this.splitContainer2.Panel2.Controls.Add(this.panel8);
-            this.splitContainer2.Panel2.Controls.Add(this.panel7);
-            this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
-            this.splitContainer2.Size = new System.Drawing.Size(891, 565);
-            this.splitContainer2.SplitterDistance = 643;
-            this.splitContainer2.SplitterWidth = 1;
-            this.splitContainer2.TabIndex = 0;
-            // 
             // listView1
             // 
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(248)))));
@@ -216,11 +186,11 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 32);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(643, 501);
-            this.listView1.TabIndex = 4;
+            this.listView1.Size = new System.Drawing.Size(891, 501);
+            this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // name
@@ -243,8 +213,9 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 533);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(643, 32);
-            this.panel5.TabIndex = 3;
+            this.panel5.Size = new System.Drawing.Size(891, 32);
+            this.panel5.TabIndex = 6;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // panel3
             // 
@@ -252,9 +223,9 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(643, 32);
-            this.panel3.TabIndex = 1;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.panel3.Size = new System.Drawing.Size(891, 32);
+            this.panel3.TabIndex = 5;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint_1);
             // 
             // button1
             // 
@@ -265,48 +236,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Scan library";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // PlaylistListView
-            // 
-            this.PlaylistListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(248)))));
-            this.PlaylistListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PlaylistListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.PlaylistListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PlaylistListView.ForeColor = System.Drawing.Color.Navy;
-            this.PlaylistListView.FullRowSelect = true;
-            this.PlaylistListView.HideSelection = false;
-            this.PlaylistListView.Location = new System.Drawing.Point(0, 32);
-            this.PlaylistListView.Name = "PlaylistListView";
-            this.PlaylistListView.Size = new System.Drawing.Size(247, 501);
-            this.PlaylistListView.TabIndex = 5;
-            this.PlaylistListView.UseCompatibleStateImageBehavior = false;
-            this.PlaylistListView.View = System.Windows.Forms.View.Details;
-            this.PlaylistListView.SelectedIndexChanged += new System.EventHandler(this.PlaylistListView_SelectedIndexChanged);
-            this.PlaylistListView.VisibleChanged += new System.EventHandler(this.PlaylistListView_VisibleChanged);
-            this.PlaylistListView.DoubleClick += new System.EventHandler(this.PlaylistListView_DoubleClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Tag = "Name";
-            this.columnHeader1.Text = "Title";
-            // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 533);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(247, 32);
-            this.panel8.TabIndex = 4;
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(247, 32);
-            this.panel7.TabIndex = 2;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
@@ -317,7 +247,7 @@
             this.libraryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(156, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(166, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -325,13 +255,13 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // playbackToolStripMenuItem
             // 
             this.playbackToolStripMenuItem.Name = "playbackToolStripMenuItem";
-            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.playbackToolStripMenuItem.Text = "Playback";
             // 
             // libraryToolStripMenuItem
@@ -339,13 +269,13 @@
             this.libraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importMusicToolStripMenuItem});
             this.libraryToolStripMenuItem.Name = "libraryToolStripMenuItem";
-            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.libraryToolStripMenuItem.Text = "Library";
             // 
             // importMusicToolStripMenuItem
             // 
             this.importMusicToolStripMenuItem.Name = "importMusicToolStripMenuItem";
-            this.importMusicToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.importMusicToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.importMusicToolStripMenuItem.Text = "Import music";
             // 
             // LibraryView
@@ -367,10 +297,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -385,18 +311,6 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader author;
-        private System.Windows.Forms.ColumnHeader album;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView PlaylistListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playbackToolStripMenuItem;
@@ -404,5 +318,12 @@
         private System.Windows.Forms.ToolStripMenuItem importMusicToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader author;
+        private System.Windows.Forms.ColumnHeader album;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button1;
     }
 }
